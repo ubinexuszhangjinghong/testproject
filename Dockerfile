@@ -1,0 +1,10 @@
+FROM dbeaver/cloudbeaver:24.0.2
+
+WORKDIR /opt/cloudbeaver/
+
+COPY org.jkiss.dbeaver.ext.generic_2.3.214.202404080822.jar /opt/cloudbeaver/server/plugins/
+COPY io.cloudbeaver.resources.drivers.base_1.0.95.202404080822.jar /opt/cloudbeaver/server/plugins/
+RUN mkdir /opt/cloudbeaver/drivers/tdengine	
+COPY tdengine /opt/cloudbeaver/drivers/tdengine
+
+ENTRYPOINT ["./run-server.sh"]
